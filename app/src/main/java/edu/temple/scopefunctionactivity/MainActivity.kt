@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     // Return a list of random, sorted integers
 
-    private fun getTestDataArray() = with(MutableList(10){Random.nextInt()}){this.sort()
-    this}
+    private fun getTestDataArray() = with(MutableList(10){Random.nextInt()}.sorted()){this}
 
     // Return true if average value in list is greater than median value, false otherwise
     private fun averageLessThanMedium(listOfNumbers: List<Double>) = with(listOfNumbers.sorted()){
