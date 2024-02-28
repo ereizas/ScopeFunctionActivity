@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     // Return a list of random, sorted integers
 
-    private fun getTestDataArray() = with(MutableList(10){Random.nextInt()}.sorted()){this}
+    private fun getTestDataArray() = MutableList(10){Random.nextInt()}.sorted()
 
     // Return true if average value in list is greater than median value, false otherwise
     private fun averageLessThanMedium(listOfNumbers: List<Double>) = with(listOfNumbers.sorted()){
@@ -38,9 +38,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Create a view from an item in a collection, but recycle if possible (similar to an AdapterView's adapter)
-    private fun getView(position: Int, recycledView: View?, collection: List<Int>, context: Context): View = with(recycledView as TextView?:TextView(context)){
-        this.setPadding(5, 10, 10, 0);textSize = 22f;text=collection[position].toString()
-        this
+    private fun getView(position: Int, recycledView: View?, collection: List<Int>, context: Context): View = (recycledView as? TextView?:TextView(context).apply{
+        setPadding(5, 10, 10, 0);
+        textSize = 22f;
+    }).apply{text=collection[position].toString()
     }
 
 }
