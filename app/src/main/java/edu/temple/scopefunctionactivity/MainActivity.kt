@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         // You can test your helper functions by  calling them from onCreate() and
         // printing their output to the Log, which is visible in the LogCat:
         // eg. Log.d("function output", getTestDataArray().toString())
-
+        for(i in getTestDataArray())
+        Log.d("Test Data Array",getTestDataArray().toString())
     }
 
 
@@ -27,11 +28,9 @@ class MainActivity : AppCompatActivity() {
     // Look at the final/return value and build the function "working backwards"
 
     // Return a list of random, sorted integers
-    private fun getTestDataArray() : List<Int> {
-        val testArray = MutableList(10){ Random.nextInt()}
-        testArray.sort()
-        return testArray
-    }
+
+    private fun getTestDataArray() = with(MutableList(10){Random.nextInt()}){this.sort()
+    this}
 
     // Return true if average value in list is greater than median value, false otherwise
     private fun averageLessThanMedian(listOfNumbers: List<Double>): Boolean {
