@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         // You can test your helper functions by  calling them from onCreate() and
         // printing their output to the Log, which is visible in the LogCat:
         // eg. Log.d("function output", getTestDataArray().toString())
-        for(i in getTestDataArray())
-        Log.d("Test Data Array",getTestDataArray().toString())
+        val testData:List<Double> = getTestDataArray() as List<Double>
+        Log.d("Test Data Array",testData.toString())
+        Log.d("Avg < Med",averageLessThanMedium(testData).toString())
     }
 
 
@@ -33,15 +34,8 @@ class MainActivity : AppCompatActivity() {
     this}
 
     // Return true if average value in list is greater than median value, false otherwise
-    private fun averageLessThanMedian(listOfNumbers: List<Double>): Boolean {
-        val avg = listOfNumbers.average()
-        val sortedList = listOfNumbers.sorted()
-        val median = if (sortedList.size % 2 == 0)
-            (sortedList[sortedList.size / 2] + sortedList[(sortedList.size - 1) / 2]) / 2
-        else
-            sortedList[sortedList.size / 2]
-
-        return avg < median
+    private fun averageLessThanMedium(listOfNumbers: List<Double>) = with(listOfNumbers.sorted()){
+        this.average()<if (this.size % 2 == 0) (this[this.size / 2] + this[(this.size - 1) / 2]) / 2 else this[this.size / 2]
     }
 
     // Create a view from an item in a collection, but recycle if possible (similar to an AdapterView's adapter)
